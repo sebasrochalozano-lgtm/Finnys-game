@@ -1,49 +1,49 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b5gs38lhrexqs"]
 
 [ext_resource type="PackedScene" path="res://level/costumers/custumer_1.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" path="res://player/player_01.tscn" id="2_sugp2"]
-[ext_resource type="PackedScene" path="res://scenes/level01.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://bwclpqw27y37b" path="res://scenes/level01.tscn" id="3_jyhfs"]
 [ext_resource type="PackedScene" path="res://level/chest/chest.tscn" id="4_jyhfs"]
-[ext_resource type="Script" path="res://scripts/ui.gd" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://riagpxm0xsv1" path="res://scripts/ui.gd" id="6_tefeu"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=817496583]
 
-[node name="Level01" parent="." instance=ExtResource("3_jyhfs")]
+[node name="Level01" parent="." unique_id=894820027 instance=ExtResource("3_jyhfs")]
 
-[node name="custumer_1" parent="." instance=ExtResource("1_o5qli")]
-position = Vector2(1010, 298)
+[node name="custumer_1" parent="." unique_id=1306106480 instance=ExtResource("1_o5qli")]
+position = Vector2(1271, 375)
 
-[node name="player_01" parent="." instance=ExtResource("2_sugp2")]
+[node name="player_01" parent="." unique_id=1581667674 instance=ExtResource("2_sugp2")]
+position = Vector2(96, 348)
 
-[node name="ChestKing" parent="." instance=ExtResource("4_jyhfs")]
-position = Vector2(30, 70)
+[node name="ChestKing" parent="." unique_id=1090084976 instance=ExtResource("4_jyhfs")]
+position = Vector2(112, 89)
 chest_type = 0
 
-[node name="ChestBusinnes" parent="." instance=ExtResource("4_jyhfs")]
-position = Vector2(30, 515)
+[node name="ChestBusinnes" parent="." unique_id=672731721 instance=ExtResource("4_jyhfs")]
+position = Vector2(113, 528)
 
-
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1143361303]
 script = ExtResource("6_tefeu")
 
-[node name="LabelKing" type="Label" parent="UI"]
-offset_left = 15.0
-offset_top = 6.0
-offset_right = 97.0
-offset_bottom = 29.0
+[node name="LabelKing" type="Label" parent="UI" unique_id=1035955697]
+offset_left = 20.0
+offset_top = 54.0
+offset_right = 102.0
+offset_bottom = 77.0
 text = "Chest King"
 
-[node name="LabelBusinnes" type="Label" parent="UI"]
+[node name="LabelBusinnes" type="Label" parent="UI" unique_id=843497076]
 anchors_preset = -1
 anchor_left = -0.026
 anchor_right = -0.026
-offset_left = 41.952
-offset_top = 525.0
-offset_right = 160.952
-offset_bottom = 548.0
+offset_left = 43.952
+offset_top = 499.0
+offset_right = 162.952
+offset_bottom = 522.0
 text = "Chest Businnes"
 
-[node name="LabelWallet" type="Label" parent="UI"]
+[node name="LabelWallet" type="Label" parent="UI" unique_id=602553114]
 anchors_preset = -1
 anchor_bottom = 0.089
 offset_left = 376.0
@@ -51,14 +51,12 @@ offset_top = 9.0
 offset_right = 416.0
 offset_bottom = -25.672
 
-
-
-[node name="Controls" type="Label" parent="UI"]
+[node name="Controls" type="Label" parent="UI" unique_id=1759669055]
 offset_left = 300.0
 offset_top = 610.0
 offset_right = 1050.0
 offset_bottom = 640.0
-text = "WASD / Arrows: Move   |   Space / Enter: Show   |   E: Deposit"
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
+text = "WASD / Arrows: Move   |   Space / Enter: Show   |   E: Deposit"

@@ -1,6 +1,8 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bwclpqw27y37b"]
 
-[ext_resource type="Texture2D" path="res://assets/fondo_Cueva1.png" id="1_miv2v"]
+[ext_resource type="Texture2D" uid="uid://cjrbg77e3ow8v" path="res://assets/fondo_Cueva1.png" id="1_miv2v"]
+[ext_resource type="Texture2D" uid="uid://1km2hqpvtjga" path="res://assets/Cueva finny.jpg" id="2_8es24"]
+[ext_resource type="Shader" uid="uid://cujqjo4h6pq0k" path="res://scripts/cueva_brillo.gdshader" id="2_gbk3v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8es24"]
 texture = ExtResource("1_miv2v")
@@ -11,9 +13,22 @@ texture_region_size = Vector2i(2000, 1414)
 tile_size = Vector2i(2000, 1414)
 sources/0 = SubResource("TileSetAtlasSource_8es24")
 
-[node name="Level01" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tvjgw"]
+shader = ExtResource("2_gbk3v")
+shader_parameter/intensidad = 0.25
+shader_parameter/velocidad = 1.0
 
-[node name="Ground" type="TileMapLayer" parent="."]
+[node name="Level01" type="Node2D" unique_id=1463233731]
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=460868896]
+visible = false
 scale = Vector2(0.6, 0.6)
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_7h4gp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=916132205]
+z_index = -10
+material = SubResource("ShaderMaterial_tvjgw")
+scale = Vector2(0.563, 0.567)
+texture = ExtResource("2_8es24")
+centered = false
