@@ -1,28 +1,74 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://c411h1obsxq45"]
 
-[ext_resource type="Texture2D" path="res://assets/animations/business.png" id="1"]
-
-[sub_resource type="AtlasTexture" id="Frame_0"]
-atlas = ExtResource("1")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="Frame_1"]
-atlas = ExtResource("1")
-region = Rect2(256, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="Frame_2"]
-atlas = ExtResource("1")
-region = Rect2(512, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="Frame_3"]
-atlas = ExtResource("1")
-region = Rect2(768, 0, 256, 256)
+[ext_resource type="Texture2D" uid="uid://bpifbyve5ipcp" path="res://assets/animations/business.png" id="1"]
 
 [sub_resource type="AtlasTexture" id="Frame_4"]
 atlas = ExtResource("1")
 region = Rect2(1024, 0, 256, 256)
 
+[sub_resource type="AtlasTexture" id="Frame_3"]
+atlas = ExtResource("1")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="Frame_2"]
+atlas = ExtResource("1")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="Frame_1"]
+atlas = ExtResource("1")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="Frame_0"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 256, 256)
+
 [resource]
-animations = [{"frames": [{"duration": 1.0, "texture": SubResource("Frame_0")}], "loop": false, "name": &"closed", "speed": 1.0},
-{"frames": [{"duration": 1.0, "texture": SubResource("Frame_0")}, {"duration": 1.0, "texture": SubResource("Frame_1")}, {"duration": 1.0, "texture": SubResource("Frame_2")}, {"duration": 1.0, "texture": SubResource("Frame_3")}, {"duration": 1.0, "texture": SubResource("Frame_4")}], "loop": false, "name": &"open", "speed": 10.0},
-{"frames": [{"duration": 1.0, "texture": SubResource("Frame_4")}, {"duration": 1.0, "texture": SubResource("Frame_3")}, {"duration": 1.0, "texture": SubResource("Frame_2")}, {"duration": 1.0, "texture": SubResource("Frame_1")}, {"duration": 1.0, "texture": SubResource("Frame_0")}], "loop": false, "name": &"close", "speed": 10.0}]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_0")
+}],
+"loop": 0,
+"name": &"close",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame_0")
+}],
+"loop": 0,
+"name": &"closed",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_3")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_4")
+}],
+"loop": 0,
+"name": &"open",
+"speed": 10.0
+}]

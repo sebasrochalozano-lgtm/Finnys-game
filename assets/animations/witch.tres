@@ -1,38 +1,6 @@
-[gd_resource type="SpriteFrames" load_steps=14 format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://8otxetjuoa5n"]
 
-[ext_resource type="Texture2D" path="res://assets/animations/witch.png" id="1"]
-
-[sub_resource type="AtlasTexture" id="Frame_0"]
-atlas = ExtResource("1")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="Frame_1"]
-atlas = ExtResource("1")
-region = Rect2(256, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="Frame_2"]
-atlas = ExtResource("1")
-region = Rect2(512, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="Frame_3"]
-atlas = ExtResource("1")
-region = Rect2(768, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="Frame_4"]
-atlas = ExtResource("1")
-region = Rect2(1024, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="Frame_5"]
-atlas = ExtResource("1")
-region = Rect2(1280, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="Frame_6"]
-atlas = ExtResource("1")
-region = Rect2(1536, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="Frame_7"]
-atlas = ExtResource("1")
-region = Rect2(1792, 0, 256, 256)
+[ext_resource type="Texture2D" uid="uid://csbccvqdja1l1" path="res://assets/animations/witch.png" id="1"]
 
 [sub_resource type="AtlasTexture" id="Frame_8"]
 atlas = ExtResource("1")
@@ -50,8 +18,96 @@ region = Rect2(2560, 0, 256, 256)
 atlas = ExtResource("1")
 region = Rect2(2816, 0, 256, 256)
 
+[sub_resource type="AtlasTexture" id="Frame_4"]
+atlas = ExtResource("1")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="Frame_5"]
+atlas = ExtResource("1")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="Frame_6"]
+atlas = ExtResource("1")
+region = Rect2(1536, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="Frame_7"]
+atlas = ExtResource("1")
+region = Rect2(1792, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="Frame_0"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="Frame_1"]
+atlas = ExtResource("1")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="Frame_2"]
+atlas = ExtResource("1")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="Frame_3"]
+atlas = ExtResource("1")
+region = Rect2(768, 0, 256, 256)
+
 [resource]
-animations = [{"frames": [{"duration": 1.0, "texture": SubResource("Frame_0")}, {"duration": 1.0, "texture": SubResource("Frame_1")}, {"duration": 1.0, "texture": SubResource("Frame_2")}, {"duration": 1.0, "texture": SubResource("Frame_3")}], "loop": true, "name": &"idle", "speed": 4.0},
-{"frames": [{"duration": 1.0, "texture": SubResource("Frame_4")}, {"duration": 1.0, "texture": SubResource("Frame_5")}, {"duration": 1.0, "texture": SubResource("Frame_6")}, {"duration": 1.0, "texture": SubResource("Frame_7")}], "loop": true, "name": &"costumer1_walk", "speed": 8.0},
-{"frames": [{"duration": 1.0, "texture": SubResource("Frame_8")}, {"duration": 1.0, "texture": SubResource("Frame_9")}, {"duration": 1.0, "texture": SubResource("Frame_10")}, {"duration": 1.0, "texture": SubResource("Frame_11")}], "loop": true, "name": &"costumer1_attack", "speed": 6.0},
-{"frames": [{"duration": 1.0, "texture": SubResource("Frame_0")}], "loop": false, "name": &"upset", "speed": 4.0}]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame_8")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_9")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_11")
+}],
+"loop": 1,
+"name": &"costumer1_attack",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame_4")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_5")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_6")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_7")
+}],
+"loop": 1,
+"name": &"costumer1_walk",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("Frame_3")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("Frame_0")
+}],
+"loop": 0,
+"name": &"upset",
+"speed": 4.0
+}]
