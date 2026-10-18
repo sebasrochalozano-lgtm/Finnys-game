@@ -1,33 +1,36 @@
-[gd_scene load_steps=5 format=3]
-[ext_resource type="Script" path="res://scripts/custumer_1.gd" id="1"]
-[ext_resource type="SpriteFrames" path="res://assets/animations/witch.tres" id="2"]
+[gd_scene format=3 uid="uid://dtuqaosc0nvst"]
+
+[ext_resource type="Script" uid="uid://bpqiv0cbkhwfj" path="res://scripts/custumer_1.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://8otxetjuoa5n" path="res://assets/animations/witch.tres" id="2"]
+
 [sub_resource type="RectangleShape2D" id="Body"]
 size = Vector2(62, 80)
+
 [sub_resource type="CircleShape2D" id="Range"]
 radius = 125.1
 
-[node name="costumer_1" type="CharacterBody2D"]
+[node name="costumer_1" type="CharacterBody2D" unique_id=1852267619]
 position = Vector2(1107, 305)
 script = ExtResource("1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=514245693]
 position = Vector2(-42, 80)
 scale = Vector2(0.8, 0.8)
-offset = Vector2(0, -120)
 sprite_frames = ExtResource("2")
 animation = &"idle"
+offset = Vector2(0, -120)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=835098073]
 position = Vector2(-42, 36)
 shape = SubResource("Body")
 
-[node name="DetectionArea" type="Area2D" parent="."]
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1908037565]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionArea"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionArea" unique_id=1425066111]
 position = Vector2(-42, 0)
 shape = SubResource("Range")
 
-[node name="PatienceBar" type="ProgressBar" parent="."]
+[node name="PatienceBar" type="ProgressBar" parent="." unique_id=509419808]
 offset_left = -95.0
 offset_top = -93.0
 offset_right = 11.0
@@ -38,7 +41,7 @@ max_value = 10.0
 value = 10.0
 show_percentage = false
 
-[node name="TimeLabel" type="Label" parent="PatienceBar"]
+[node name="TimeLabel" type="Label" parent="PatienceBar" unique_id=1929302598]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,6 +51,17 @@ offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "10s"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DialogueLabel" type="Label" parent="." unique_id=742943011]
+offset_left = -192.0
+offset_top = -145.0
+offset_right = 108.0
+offset_bottom = -100.0
+offset_transform_position = Vector2(-192, 145)
+theme_override_font_sizes/font_size = 16
+text = "Hello, Finny!"
 horizontal_alignment = 1
 vertical_alignment = 1
 

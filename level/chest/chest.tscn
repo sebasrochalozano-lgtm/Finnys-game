@@ -1,28 +1,39 @@
-[gd_scene load_steps=5 format=3]
-[ext_resource type="Script" path="res://scripts/chest.gd" id="1"]
-[ext_resource type="SpriteFrames" path="res://assets/animations/business.tres" id="2"]
+[gd_scene format=3 uid="uid://ck1wud7yo0ppu"]
+
+[ext_resource type="Script" uid="uid://cuj62bhmvu2wq" path="res://scripts/chest.gd" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://c411h1obsxq45" path="res://assets/animations/business.tres" id="2"]
+
 [sub_resource type="RectangleShape2D" id="Range"]
 size = Vector2(170, 135)
+
 [sub_resource type="RectangleShape2D" id="Body"]
 size = Vector2(100, 56)
 
-[node name="Chest" type="Area2D"]
+[node name="Chest" type="Area2D" unique_id=203550065]
 script = ExtResource("1")
 chest_type = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=796549787]
 position = Vector2(54, 97)
 scale = Vector2(0.55, 0.55)
-offset = Vector2(0, -120)
 sprite_frames = ExtResource("2")
 animation = &"closed"
+offset = Vector2(0, -120)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1796847157]
 position = Vector2(54, 65)
 shape = SubResource("Range")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1170758113]
 position = Vector2(54, 65)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1567248849]
 shape = SubResource("Body")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=481585985]
+offset_left = 5.0
+offset_top = -45.0
+offset_right = 105.0
+offset_bottom = -31.0
+mouse_filter = 2
+show_percentage = false
