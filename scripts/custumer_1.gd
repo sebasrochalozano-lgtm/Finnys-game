@@ -7,7 +7,8 @@ signal left_without_paying
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var patience_bar: ProgressBar = $PatienceBar
 @onready var time_label: Label = $PatienceBar/TimeLabel
-@onready var dialogue_label: Label = $DialogueLabel
+@onready var dialogue_panel: PanelContainer = $PanelContainer
+@onready var dialogue_label: Label = $PanelContainer/DialogueLabel
 @onready var body_shape: CollisionShape2D = $CollisionShape2D
 
 const WITCH = preload("res://assets/animations/witch.tres")
@@ -82,14 +83,19 @@ func _ready() -> void:
 
 	time_label.text = str(ceili(patience)) + "s"
 
-	dialogue_label.text = ""
-	dialogue_label.hide()
+	hide_dialogue()
 
 	animated_sprite.frame_changed.connect(_on_frame_changed)
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 	animated_sprite.play("idle")
 
+func say(text: String) -> void:
+	dialogue_label.text = text
+	dialogue_panel.show()
 
+func hide_dialogue() -> void:
+	dialogue_label.text = ""
+	dialogue_panel.hide()
 func _physics_process(delta: float) -> void:
 	match current_state:
 		State.ARRIVING:
@@ -180,8 +186,7 @@ func start_show() -> void:
 	patience_bar.hide()
 	velocity = Vector2.ZERO
 
-	dialogue_label.text = HELLO[customer_type]
-	dialogue_label.show()
+	say(HELLO[customer_type])
 
 	animated_sprite.speed_scale = 1.0
 	animated_sprite.play("costumer1_attack")
@@ -194,14 +199,14 @@ func start_show() -> void:
 	Economy.earn(price)
 	paid.emit(price)
 
-	dialogue_label.text = THANKS[customer_type]
+	say(THANKS[customer_type])
 
 	await get_tree().create_timer(1.5).timeout
 
 	if current_state == State.STOPPED:
 		return
 
-	dialogue_label.hide()
+	hide_dialogue()
 	current_state = State.LEAVING
 
 
@@ -220,8 +225,7 @@ func leave_angry() -> void:
 			animated_sprite.play("upset")
 
 		2:
-			dialogue_label.text = "I'll smash this place!"
-			dialogue_label.show()
+			say("I'll smash this place!")
 			current_state = State.CHASING
 
 
@@ -247,7 +251,7 @@ func chasing(delta: float) -> void:
 
 	if target == null:
 		current_state = State.LEAVING
-		dialogue_label.hide()
+		hide_dialogue()
 		return
 
 	var hit_position: Vector2 = target.call("get_hit_position")
@@ -260,7 +264,7 @@ func chasing(delta: float) -> void:
 		current_state = State.ATTACKING
 		hit_done = false
 
-		dialogue_label.text = "BIG SMASH!" if strong_attack else "SMASH!"
+		say("BIG SMASH!" if strong_attack else "SMASH!")
 		animated_sprite.speed_scale = 1.0 if strong_attack else 1.5
 		animated_sprite.play("upset")
 
@@ -318,14 +322,16 @@ func stop_for_game_over() -> void:
 	velocity = Vector2.ZERO
 
 	patience_bar.hide()
-	dialogue_label.hide()
+	hide_dialogue()
 	animated_sprite.stop()
 
 
 func leaving(delta: float) -> void:
-	if move_towards(spawn_position, delta):
-		queue_free()
+	collision_mask = 0
 
+	if global_position.distance_to(spawn_position) < 12.0 \
+	or move_towards(spawn_position, delta):
+		queue_free()
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

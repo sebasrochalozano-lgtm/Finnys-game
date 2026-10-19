@@ -1,8 +1,16 @@
-[gd_scene load_steps=3 format=3]
-[ext_resource type="PackedScene" path="res://level/costumers/custumer_1.tscn" id="1"]
-[ext_resource type="SpriteFrames" path="res://assets/animations/skeleton.tres" id="2"]
-[node name="skeleton" instance=ExtResource("1")]
+[gd_scene format=3 uid="uid://cbu1cvsg8ibv6"]
+
+[ext_resource type="PackedScene" uid="uid://dtuqaosc0nvst" path="res://level/costumers/custumer_1.tscn" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://d4exnfuydyy1r" path="res://assets/animations/skeleton.tres" id="2"]
+
+[node name="skeleton" unique_id=247487821 instance=ExtResource("1")]
 customer_type = 1
-[node name="AnimatedSprite2D" parent="." index="0"]
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=514245693]
 sprite_frames = ExtResource("2")
-animation = &"idle"
+
+[node name="PanelContainer" parent="." index="4" unique_id=1107351364]
+offset_left = -112.0
+offset_top = -150.0
+offset_right = 44.0
+offset_bottom = -111.0

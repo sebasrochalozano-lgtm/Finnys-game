@@ -1,8 +1,19 @@
-[gd_scene load_steps=3 format=3]
-[ext_resource type="PackedScene" path="res://level/costumers/custumer_1.tscn" id="1"]
-[ext_resource type="SpriteFrames" path="res://assets/animations/golem.tres" id="2"]
-[node name="golem" instance=ExtResource("1")]
+[gd_scene format=3 uid="uid://cjmyh1lbw5e0u"]
+
+[ext_resource type="PackedScene" uid="uid://dtuqaosc0nvst" path="res://level/costumers/custumer_1.tscn" id="1"]
+[ext_resource type="SpriteFrames" uid="uid://c0g1x1bnehv02" path="res://assets/animations/golem.tres" id="2"]
+
+[node name="golem" unique_id=1695985508 instance=ExtResource("1")]
 customer_type = 2
-[node name="AnimatedSprite2D" parent="." index="0"]
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=514245693]
 sprite_frames = ExtResource("2")
-animation = &"idle"
+
+[node name="PanelContainer" parent="." index="4" unique_id=1107351364]
+anchors_preset = -1
+anchor_top = -1.4350001
+anchor_bottom = -1.4350001
+offset_left = -110.0
+offset_top = -137.0
+offset_right = 36.0
+offset_bottom = -96.0

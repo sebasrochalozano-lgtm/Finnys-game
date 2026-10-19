@@ -9,6 +9,8 @@ size = Vector2(62, 80)
 [sub_resource type="CircleShape2D" id="Range"]
 radius = 125.1
 
+[sub_resource type="Theme" id="Theme_tbgi4"]
+
 [node name="costumer_1" type="CharacterBody2D" unique_id=1852267619]
 position = Vector2(1107, 305)
 script = ExtResource("1")
@@ -17,7 +19,7 @@ script = ExtResource("1")
 position = Vector2(-42, 80)
 scale = Vector2(0.8, 0.8)
 sprite_frames = ExtResource("2")
-animation = &"idle"
+animation = &"costumer1_walk"
 offset = Vector2(0, -120)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=835098073]
@@ -54,13 +56,17 @@ text = "10s"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DialogueLabel" type="Label" parent="." unique_id=742943011]
-offset_left = -192.0
-offset_top = -145.0
-offset_right = 108.0
-offset_bottom = -100.0
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1107351364]
+offset_left = -122.0
+offset_top = -143.0
+offset_right = 32.0
+offset_bottom = -103.0
+
+[node name="DialogueLabel" type="Label" parent="PanelContainer" unique_id=742943011]
+layout_mode = 2
 offset_transform_position = Vector2(-192, 145)
-theme_override_font_sizes/font_size = 16
+theme = SubResource("Theme_tbgi4")
+theme_override_font_sizes/font_size = 20
 text = "Hello, Finny!"
 horizontal_alignment = 1
 vertical_alignment = 1
