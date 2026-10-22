@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dj4wthddfajft" path="res://assets/animations/finny.tres" id="2"]
 
 [sub_resource type="RectangleShape2D" id="Body"]
-size = Vector2(78, 95)
+size = Vector2(107.50461, 36.352646)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tefeu"]
 bg_color = Color(0.14509805, 0.14509805, 0.1882353, 1)
@@ -32,7 +32,9 @@ animation = &"idle"
 offset = Vector2(0, -120)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2092325424]
-position = Vector2(0, 20)
+position = Vector2(14.153839, 7)
+rotation = -3.1415925
+scale = Vector2(1.1877847, -3.6861143)
 shape = SubResource("Body")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=758874539]
