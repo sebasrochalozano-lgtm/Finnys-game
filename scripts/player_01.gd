@@ -156,6 +156,29 @@ func _play_action_animation(animation_name: String) -> void:
 	is_doing_action = false
 	sprite.play("idle")
 
+func walk_to_position(destination: Vector2) -> void:
+	if is_dead:
+		return
+	is_sleeping = false
+	is_doing_action = true
+	velocity = Vector2.ZERO
+	sprite.modulate = Color.WHITE
+	sprite.scale = initial_sprite_scale
+	if absf(destination.x - global_position.x) > 1.0:
+		sprite.flip_h = destination.x < global_position.x
+	var distance := global_position.distance_to(destination)
+	sprite.speed_scale = 1.0
+	sprite.play("walk")
+	var walk_tween := create_tween()
+	walk_tween.tween_property(self, "global_position", destination, distance / 320.0)
+	await walk_tween.finished
+	if is_dead:
+		return
+	velocity = Vector2.ZERO
+	is_doing_action = false
+	sprite.speed_scale = 1.0
+	sprite.play("idle")
+
 func go_to_sleep() -> void:
 	if is_dead:
 		return

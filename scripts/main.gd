@@ -30,10 +30,10 @@ func _ready() -> void:
 	level.day_started.connect(_on_day_started)
 	level.night_started.connect(_on_night_started)
 	level.game_finished.connect(_on_game_finished)
-	$UI/PanelContainer/Controls.text = "WASD / flechas: mover  |  E: show o depositar  |  R: atacar  |  Backspace: pausa"
+	$UI/PanelContainer/Controls.text = "Mover: WASD/flechas  |  A: abrir pasillo (al cerrar)  |  W: entrar al cuarto  |  S: volver\nE: atender/guardar  |  R: atacar  |  Backspace: pausa"
 	day_label = Label.new()
-	day_label.position = Vector2(492, 8)
-	day_label.size = Vector2(180, 28)
+	day_label.position = Vector2(396, 8)
+	day_label.size = Vector2(360, 28)
 	day_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	day_label.add_theme_color_override("font_color", Color(1.0, 0.93, 0.62))
 	day_label.add_theme_color_override("font_shadow_color", Color.BLACK)
@@ -210,7 +210,7 @@ func _on_day_started(day_number: int) -> void:
 		music.volume_db = -12.0
 
 func _on_night_started(day_number: int) -> void:
-	day_label.text = "DAY %d  |  NIGHT • FINNY IS SLEEPING" % day_number
+	day_label.text = "DAY %d  |  NIGHT • A: PASILLO  |  W: CUARTO" % day_number
 	if music != null:
 		music.volume_db = -18.0
 

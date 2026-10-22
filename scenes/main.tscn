@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://b5gs38lhrexqs"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://wtqd6cf244qd" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="PackedScene" uid="uid://dtulhwr7j23es" path="res://player/player_01.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bwclpqw27y37b" path="res://scenes/level01.tscn" id="3_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://ck1wud7yo0ppu" path="res://level/chest/chest.tscn" id="4_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://b7gnw7duavxe5" path="res://level/costumers/goblin.tscn" id="5_goblin"]
 [ext_resource type="Script" uid="uid://riagpxm0xsv1" path="res://scripts/ui.gd" id="6_tefeu"]
 
 [node name="Main" type="Node2D" unique_id=817496583]
@@ -13,27 +11,21 @@ script = ExtResource("1_main")
 
 [node name="Level01" parent="." unique_id=894820027 instance=ExtResource("3_jyhfs")]
 process_mode = 1
-goblin_scene = ExtResource("5_goblin")
 
 [node name="player_01" parent="Level01" unique_id=2145324134 instance=ExtResource("2_sugp2")]
 position = Vector2(96, 348)
 
-[node name="ChestKing" parent="Level01" unique_id=203550065 instance=ExtResource("4_jyhfs")]
-position = Vector2(121, 68)
-chest_type = 0
 
-[node name="ChestBusinnes" parent="Level01" unique_id=277747230 instance=ExtResource("4_jyhfs")]
-position = Vector2(113, 528)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1143361303]
 process_mode = 1
 script = ExtResource("6_tefeu")
 
 [node name="PanelContainer" type="PanelContainer" parent="UI" unique_id=1662745637]
-offset_left = 431.0
-offset_top = 568.0
-offset_right = 862.0
-offset_bottom = 624.0
+offset_left = 276.0
+offset_top = 548.0
+offset_right = 876.0
+offset_bottom = 638.0
 
 [node name="Controls" type="Label" parent="UI/PanelContainer" unique_id=1759669055]
 layout_mode = 2
@@ -67,20 +59,23 @@ offset_bottom = 648.0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MenuLayer" type="CanvasLayer" parent="."]
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=1622073858]
 process_mode = 3
 
-[node name="Screen" type="TextureRect" parent="MenuLayer"]
+[node name="Screen" type="TextureRect" parent="MenuLayer" unique_id=1111781066]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 24.0
+offset_right = -31.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
 expand_mode = 1
 stretch_mode = 5
 
-[node name="ResultLabel" type="Label" parent="MenuLayer"]
+[node name="ResultLabel" type="Label" parent="MenuLayer" unique_id=2059301071]
 visible = false
 offset_left = 365.0
 offset_top = 540.0
