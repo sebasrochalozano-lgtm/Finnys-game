@@ -166,9 +166,14 @@ func spawn_goblin(ogre: Node2D, offset: Vector2) -> void:
 	goblin.leader = ogre
 	goblin.escort_offset = offset
 	goblin.raid_duration = maxf(group_attack_duration, 1.0)
+
 	add_child(goblin)
 	goblin.global_position = spawn_point.global_position + offset
 
+	# Ambos regresan a la entrada de la cueva.
+	goblin.spawn_position = spawn_point.global_position
+	
+	
 func watch_ogre(ogre: Node2D) -> void:
 	while is_running and is_instance_valid(ogre):
 		if ogre.is_queued_for_deletion() or game_has_ended():
