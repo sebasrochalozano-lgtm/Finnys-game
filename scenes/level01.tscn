@@ -33,12 +33,19 @@ scale = Vector2(0.6, 0.6)
 tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_7h4gp")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=916132205]
+[node name="ParallaxBackground" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.28, 0.0)
+repeat_size = Vector2(1549.0, 0.0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground" unique_id=916132205]
 z_index = -10
 material = SubResource("ShaderMaterial_tvjgw")
 scale = Vector2(0.563, 0.567)
 texture = ExtResource("2_8es24")
 centered = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=729722008]
 position = Vector2(1046, 358)
