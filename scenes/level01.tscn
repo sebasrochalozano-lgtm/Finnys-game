@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cjrbg77e3ow8v" path="res://assets/fondo_Cueva1.png" id="1_miv2v"]
 [ext_resource type="Texture2D" uid="uid://1km2hqpvtjga" path="res://assets/Cueva finny.jpg" id="2_8es24"]
 [ext_resource type="Shader" uid="uid://cujqjo4h6pq0k" path="res://scripts/cueva_brillo.gdshader" id="2_gbk3v"]
-[ext_resource type="PackedScene" path="res://level/costumers/witch.tscn" id="2_rnd6f"]
-[ext_resource type="PackedScene" path="res://level/costumers/skeleton.tscn" id="3_xl5rn"]
-[ext_resource type="PackedScene" path="res://level/costumers/golem.tscn" id="4_uqa8t"]
+[ext_resource type="PackedScene" uid="uid://b65ru46aknr3r" path="res://level/costumers/witch.tscn" id="2_rnd6f"]
+[ext_resource type="PackedScene" uid="uid://cbu1cvsg8ibv6" path="res://level/costumers/skeleton.tscn" id="3_xl5rn"]
+[ext_resource type="PackedScene" uid="uid://cjmyh1lbw5e0u" path="res://level/costumers/golem.tscn" id="4_uqa8t"]
+[ext_resource type="PackedScene" uid="uid://b7gnw7duavxe5" path="res://level/costumers/goblin.tscn" id="5_xl5rn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8es24"]
 texture = ExtResource("1_miv2v")
@@ -26,6 +27,7 @@ shader_parameter/velocidad = 1.0
 script = ExtResource("1_l8gd6")
 customer_scenes = Array[PackedScene]([ExtResource("2_rnd6f"), ExtResource("3_xl5rn"), ExtResource("4_uqa8t")])
 spawn_point = NodePath("SpawnPoint")
+goblin_scene = ExtResource("5_xl5rn")
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=460868896]
 visible = false
