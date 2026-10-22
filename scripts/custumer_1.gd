@@ -215,6 +215,7 @@ func start_show() -> void:
 
 	Economy.earn(price)
 	paid.emit(price)
+	await performer.play_collect_animation()
 
 	say(THANKS[customer_type])
 

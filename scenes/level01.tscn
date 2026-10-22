@@ -27,6 +27,7 @@ shader_parameter/velocidad = 1.0
 script = ExtResource("1_l8gd6")
 customer_scenes = Array[PackedScene]([ExtResource("2_rnd6f"), ExtResource("3_xl5rn"), ExtResource("4_uqa8t")])
 spawn_point = NodePath("SpawnPoint")
+y_sort_enabled = true
 goblin_scene = ExtResource("5_xl5rn")
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=460868896]

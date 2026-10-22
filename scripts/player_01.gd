@@ -16,11 +16,14 @@ signal show_finished
 @export var attack_range: float = 130.0
 
 var is_doing_show: bool = false
+var is_doing_action: bool = false
+var is_sleeping: bool = false
 var is_attacking: bool = false
 var attack_hit_done: bool = false
 var is_dead: bool = false
 var health: int = 100
 var hurt_time: float = 0.0
+var initial_sprite_scale: Vector2
 
 
 func _ready() -> void:
@@ -33,6 +36,7 @@ func _ready() -> void:
 	if game_over_label != null:
 		game_over_label.hide()
 
+	initial_sprite_scale = sprite.scale
 	sprite.animation_finished.connect(_on_animation_finished)
 	sprite.frame_changed.connect(_on_attack_frame_changed)
 	sprite.play("idle")
@@ -44,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	if not is_dead and hurt_time <= 0.0:
 		sprite.modulate = Color.WHITE
 
-	if is_doing_show or is_attacking or is_dead:
+	if is_doing_show or is_doing_action or is_attacking or is_dead or is_sleeping:
 		velocity = Vector2.ZERO
 		return
 
@@ -84,7 +88,7 @@ func animate_walk() -> void:
 
 
 func attack() -> void:
-	if is_dead or is_doing_show or is_attacking:
+	if is_dead or is_doing_show or is_doing_action or is_attacking or is_sleeping:
 		return
 
 	is_attacking = true
@@ -136,8 +140,43 @@ func _on_attack_frame_changed() -> void:
 		enemy.call("take_damage", attack_damage)
 
 
+func play_collect_animation() -> void:
+	await _play_action_animation("collect")
+
+func _play_action_animation(animation_name: String) -> void:
+	if is_dead or not sprite.sprite_frames.has_animation(animation_name):
+		return
+	is_doing_action = true
+	velocity = Vector2.ZERO
+	sprite.speed_scale = 1.0
+	sprite.play(animation_name)
+	await sprite.animation_finished
+	if is_dead:
+		return
+	is_doing_action = false
+	sprite.play("idle")
+
+func go_to_sleep() -> void:
+	if is_dead:
+		return
+	is_sleeping = true
+	velocity = Vector2.ZERO
+	sprite.play("idle")
+	sprite.rotation_degrees = 0.0
+	sprite.modulate = Color(0.62, 0.74, 1.0)
+	sprite.scale.y = initial_sprite_scale.y * 0.78
+
+func wake_up() -> void:
+	if is_dead:
+		return
+	is_sleeping = false
+	sprite.rotation_degrees = 0.0
+	sprite.modulate = Color.WHITE
+	sprite.scale = initial_sprite_scale
+	sprite.play("idle")
+
 func do_show() -> void:
-	if is_doing_show or is_attacking or is_dead:
+	if is_doing_show or is_doing_action or is_attacking or is_dead or is_sleeping:
 		return
 
 	is_doing_show = true
@@ -206,12 +245,11 @@ func die() -> void:
 	fall.tween_property(sprite, "rotation_degrees", 80.0, 0.4)
 
 	if game_over_label != null:
-		game_over_label.text = "GAME OVER\nPress R to restart"
-		game_over_label.show()
+		game_over_label.hide()
 
 
 func interact() -> void:
-	if is_dead or is_doing_show or is_attacking:
+	if is_dead or is_doing_show or is_doing_action or is_attacking or is_sleeping:
 		return
 
 	var nearby_customer: Node2D = null
@@ -255,8 +293,13 @@ func interact() -> void:
 			nearby_chest = chest
 
 	if nearby_chest != null:
-		nearby_chest.call("deposit")
+		do_deposit(nearby_chest)
 
+
+func do_deposit(chest: Node) -> void:
+	await _play_action_animation("deposit")
+	if is_instance_valid(chest) and not is_dead:
+		chest.call("deposit")
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey:
