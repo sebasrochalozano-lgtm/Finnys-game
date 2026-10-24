@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cbu1cvsg8ibv6" path="res://level/costumers/skeleton.tscn" id="3_xl5rn"]
 [ext_resource type="PackedScene" uid="uid://cjmyh1lbw5e0u" path="res://level/costumers/golem.tscn" id="4_uqa8t"]
 [ext_resource type="PackedScene" uid="uid://b7gnw7duavxe5" path="res://level/costumers/goblin.tscn" id="5_xl5rn"]
-[ext_resource type="Texture2D" path="res://assets/cueva_finny_pasillo.png" id="6_passage"]
+[ext_resource type="Texture2D" path="res://assets/passage_interior.png" id="6_passage"]
 [ext_resource type="Texture2D" path="res://assets/cueva_finny_cuarto.png" id="7_vault"]
 [ext_resource type="PackedScene" uid="uid://ck1wud7yo0ppu" path="res://level/chest/chest.tscn" id="8_chest"]
 
@@ -32,10 +32,6 @@ script = ExtResource("1_l8gd6")
 customer_scenes = Array[PackedScene]([ExtResource("2_rnd6f"), ExtResource("3_xl5rn"), ExtResource("4_uqa8t")])
 spawn_point = NodePath("SpawnPoint")
 goblin_scene = ExtResource("5_xl5rn")
-camera_left_limit = 576.0
-camera_right_limit = 650.0
-shop_position = Vector2(96, 348)
-vault_position = Vector2(575, 500)
 
 [node name="Ground" type="TileMapLayer" parent="." unique_id=460868896]
 visible = false

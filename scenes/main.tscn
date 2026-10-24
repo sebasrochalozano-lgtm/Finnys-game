@@ -29,7 +29,7 @@ offset_bottom = 638.0
 
 [node name="Controls" type="Label" parent="UI/PanelContainer" unique_id=1759669055]
 layout_mode = 2
-text = "WASD / flechas: mover | E: show o depositar | R: atacar | Backspace: pausa"
+text = "WASD / Arrows: Move | E: Interact | R: Attack | B: Ledger | Esc: Pause"
 horizontal_alignment = 1
 
 [node name="LabelKing" type="Label" parent="UI" unique_id=1035955697]
@@ -66,9 +66,9 @@ process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_right = -31.0
-offset_bottom = -7.0
+offset_left = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0

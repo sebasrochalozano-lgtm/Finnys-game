@@ -1,0 +1,90 @@
+[gd_scene format=3 ]
+
+[ext_resource type="Script" path="res://scripts/level_02.gd" id="1_l8gd6"]
+[ext_resource type="Texture2D" uid="uid://cjrbg77e3ow8v" path="res://assets/fondo_Cueva1.png" id="1_miv2v"]
+[ext_resource type="Texture2D" uid="uid://1km2hqpvtjga" path="res://assets/Cueva finny.jpg" id="2_8es24"]
+[ext_resource type="Shader" uid="uid://cujqjo4h6pq0k" path="res://scripts/cueva_brillo.gdshader" id="2_gbk3v"]
+[ext_resource type="PackedScene" uid="uid://b65ru46aknr3r" path="res://level/costumers/witch.tscn" id="2_rnd6f"]
+[ext_resource type="PackedScene" uid="uid://cbu1cvsg8ibv6" path="res://level/costumers/skeleton.tscn" id="3_xl5rn"]
+[ext_resource type="PackedScene" uid="uid://cjmyh1lbw5e0u" path="res://level/costumers/golem.tscn" id="4_uqa8t"]
+[ext_resource type="PackedScene" uid="uid://b7gnw7duavxe5" path="res://level/costumers/goblin.tscn" id="5_xl5rn"]
+[ext_resource type="Texture2D" path="res://assets/passage_interior.png" id="6_passage"]
+[ext_resource type="Texture2D" path="res://assets/cueva_finny_cuarto.png" id="7_vault"]
+[ext_resource type="PackedScene" uid="uid://ck1wud7yo0ppu" path="res://level/chest/chest.tscn" id="8_chest"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8es24"]
+texture = ExtResource("1_miv2v")
+texture_region_size = Vector2i(2000, 1414)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7h4gp"]
+tile_size = Vector2i(2000, 1414)
+sources/0 = SubResource("TileSetAtlasSource_8es24")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tvjgw"]
+shader = ExtResource("2_gbk3v")
+shader_parameter/intensidad = 0.25
+shader_parameter/velocidad = 1.0
+
+[node name="Level02" type="Node2D" unique_id=1463233731 node_paths=PackedStringArray("spawn_point")]
+y_sort_enabled = true
+script = ExtResource("1_l8gd6")
+customer_scenes = Array[PackedScene]([ExtResource("2_rnd6f"), ExtResource("3_xl5rn"), ExtResource("4_uqa8t")])
+spawn_point = NodePath("SpawnPoint")
+goblin_scene = ExtResource("5_xl5rn")
+
+[node name="Ground" type="TileMapLayer" parent="." unique_id=460868896]
+visible = false
+scale = Vector2(0.6, 0.6)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_7h4gp")
+
+[node name="ParallaxBackground" type="Parallax2D" parent="." unique_id=1274447559]
+scroll_scale = Vector2(0.28, 0)
+repeat_size = Vector2(1549, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground" unique_id=916132205]
+z_index = -10
+material = SubResource("ShaderMaterial_tvjgw")
+position = Vector2(14, 5)
+scale = Vector2(0.41860467, 0.42447916)
+texture = ExtResource("2_8es24")
+centered = false
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=331686931]
+position = Vector2(576, 324)
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=729722008]
+position = Vector2(1046, 358)
+
+[node name="ParallaxPassage" type="Parallax2D" parent="." unique_id=730000001]
+position = Vector2(0, 0)
+visible = false
+scroll_scale = Vector2(0.28, 0)
+
+[node name="PassageArt" type="Sprite2D" parent="ParallaxPassage" unique_id=730000002]
+z_index = -10
+position = Vector2(0, 0)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_passage")
+centered = false
+
+[node name="ParallaxVault" type="Parallax2D" parent="." unique_id=730000003]
+position = Vector2(0, 0)
+visible = false
+scroll_scale = Vector2(0.28, 0)
+
+[node name="VaultArt" type="Sprite2D" parent="ParallaxVault" unique_id=730000004]
+z_index = -10
+position = Vector2(0, 0)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_vault")
+centered = false
+
+[node name="ChestKing" parent="." unique_id=730000005 instance=ExtResource("8_chest")]
+position = Vector2(270, 500)
+chest_type = 0
+
+[node name="ChestBusiness" parent="." unique_id=730000006 instance=ExtResource("8_chest")]
+position = Vector2(980, 500)
+chest_type = 1
