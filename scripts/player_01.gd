@@ -27,6 +27,7 @@ var initial_sprite_scale: Vector2
 
 
 func _ready() -> void:
+	preload("res://scripts/actor_grounding.gd").setup(self, sprite, body_shape, 0.65)
 	add_to_group("player")
 	add_to_group("damageable")
 
@@ -67,6 +68,8 @@ func _physics_process(delta: float) -> void:
 	)
 
 	move_and_slide()
+	if get_parent().has_method("ground_actor"):
+		get_parent().ground_actor(self)
 
 	if absf(direction.x) > 0.1:
 		sprite.flip_h = direction.x < 0.0
@@ -108,6 +111,7 @@ func _on_attack_frame_changed() -> void:
 		return
 
 	attack_hit_done = true
+	SoundFX.play_fire(1)
 
 	var facing := Vector2.LEFT if sprite.flip_h else Vector2.RIGHT
 
@@ -275,6 +279,8 @@ func interact() -> void:
 	if is_dead or is_doing_show or is_doing_action or is_attacking or is_sleeping:
 		return
 
+	if get_parent().has_method("interact_environment") and get_parent().interact_environment():
+		return
 	var nearby_customer: Node2D = null
 	var nearest_distance: float = INF
 
@@ -282,8 +288,9 @@ func interact() -> void:
 		if customer.current_state != customer.State.WAITING:
 			continue
 
-		if customer.finny != self:
+		if global_position.distance_to(customer.global_position) > 160.0:
 			continue
+		customer.finny = self
 
 		var distance := get_hit_position().distance_to(
 			customer.body_shape.global_position
@@ -301,7 +308,7 @@ func interact() -> void:
 	nearest_distance = INF
 
 	for chest in get_tree().get_nodes_in_group("chest"):
-		if not chest.player_inside:
+		if not chest.visible or global_position.distance_to(chest.get_hit_position()) > 160.0:
 			continue
 
 		if chest.is_broken or chest.game_over or chest.is_opening:

@@ -36,6 +36,7 @@ var is_angry: bool = false
 
 
 func _ready() -> void:
+	preload("res://scripts/actor_grounding.gd").setup(self, sprite, body_shape, 0.27)
 	add_to_group("bandit")
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 
@@ -98,6 +99,8 @@ func _physics_process(delta: float) -> void:
 			move_towards(spawn_position, delta, &"run")
 
 	move_and_slide()
+	if get_parent().has_method("ground_actor"):
+		get_parent().ground_actor(self)
 
 
 func check_leader() -> void:
@@ -241,6 +244,7 @@ func move_towards(
 
 
 func start_leaving() -> void:
+	remove_from_group("enemy")
 	current_state = State.LEAVING
 	target = null
 	velocity = Vector2.ZERO

@@ -59,7 +59,7 @@ func deposit() -> void:
 	sprite.play("open")
 	await sprite.animation_finished
 
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.3, false).timeout
 
 	sprite.play("close")
 	await sprite.animation_finished

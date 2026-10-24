@@ -56,6 +56,8 @@ var spawn_position: Vector2
 var finny: Node2D = null
 var target: Node2D = null
 
+var payment_mode: String = "cash"
+var raid_time: float = 0.0
 var health: int = 100
 var rest_time: float = 0.0
 var strong_attack: bool = false
@@ -63,6 +65,7 @@ var hit_done: bool = false
 
 
 func _ready() -> void:
+	preload("res://scripts/actor_grounding.gd").setup(self, animated_sprite, body_shape, 0.65)
 	add_to_group("customer")
 
 	match customer_type:
@@ -107,6 +110,12 @@ func hide_dialogue() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if current_state in [State.CHASING, State.ATTACKING, State.RESTING]:
+		raid_time += delta
+		if raid_time >= 18.0:
+			current_state = State.LEAVING
+			hide_dialogue()
+			remove_from_group("enemy")
 	match current_state:
 		State.ARRIVING:
 			arriving(delta)
@@ -131,6 +140,8 @@ func _physics_process(delta: float) -> void:
 			velocity = Vector2.ZERO
 
 	move_and_slide()
+	if get_parent().has_method("ground_actor"):
+		get_parent().ground_actor(self)
 
 
 func move_towards(destination: Vector2, delta: float) -> bool:
@@ -193,9 +204,13 @@ func start_show() -> void:
 	var performer = finny
 
 	if performer.is_dead or performer.is_doing_show \
-	or performer.is_attacking:
+	or performer.is_attacking or performer.is_doing_action or performer.is_sleeping:
 		return
 
+	if not Economy.pay_show_cost():
+		say("Need 50 for supplies! Press B.")
+		return
+	price = Economy.ticket_price()
 	current_state = State.SHOWING
 	patience_bar.hide()
 	velocity = Vector2.ZERO
@@ -213,13 +228,18 @@ func start_show() -> void:
 	if performer.is_dead or current_state == State.STOPPED:
 		return
 
-	Economy.earn(price)
-	paid.emit(price)
+	Economy.finish_show(price, payment_mode)
+	paid.emit(price if payment_mode == "cash" else 0)
 	await performer.play_collect_animation()
 
-	say(THANKS[customer_type])
+	if payment_mode == "credit":
+		say("I will pay tomorrow!")
+	elif payment_mode == "fake":
+		say("Oops... that coin was chocolate!")
+	else:
+		say(THANKS[customer_type])
 
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.5, false).timeout
 
 	if current_state == State.STOPPED:
 		return
@@ -398,6 +418,7 @@ func stop_for_game_over() -> void:
 
 func leaving(delta: float) -> void:
 	collision_mask = 0
+	remove_from_group("enemy")
 
 	if global_position.distance_to(spawn_position) < 12.0 \
 	or move_towards(spawn_position, delta):

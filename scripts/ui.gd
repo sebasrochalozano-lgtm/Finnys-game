@@ -11,4 +11,4 @@ func _ready() -> void:
 func _update(wallet: int, business: int, king: int) -> void:
 	wallet_label.text = "Wallet: " + str(wallet)
 	business_label.text = "Business box: " + str(business)
-	king_label.text = "King's chest: " + str(king) + " / " + str(Economy.GOAL)
+	king_label.text = "King's chest: " + str(king) + " / " + str(Economy.target())
